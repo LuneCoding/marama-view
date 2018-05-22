@@ -134,6 +134,7 @@
 
     %------------------------------------------------------------------------------------------------------------------------------------------------------- Design Choices
     \section{Design Choices}
+    \label{sec:designchoices}
     Design decisions: discuss the motivation (arguments/reasons), consequences,
     and alternatives for the decisions.
     Onderverdeeld in epics ipv user stories, makkelijker te snappen, overzichtelijker, etc. beschrijven..
@@ -146,7 +147,12 @@
     It has been decided to resizes texture assets to dimensions in the power of two.
     This is to maintain backwards compatibility for OpenGL ES 1.0, to keep all functionality (some libGDX features are otherwise not supported) and it is a bit more memory efficient.\cite{libgdxpottex}
 
+
+    \subsection[Communication MVA-MEA]{Receiving command or information from MVA and MEA}
+    \label{subsec:comchoice}
+
     \subsection{Epics}
+    \label{subsec:epics}
     The view is made up of different epics.
     Epics are a collection of user stories that share a goal or functionality.
 
