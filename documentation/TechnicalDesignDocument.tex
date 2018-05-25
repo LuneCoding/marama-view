@@ -48,15 +48,7 @@
 
     %------------------------------------------------------------------------------------------------------------------------------------------------------- Architecture
     \section{Architecture}
-    A high-level overview of the architecture of the system.
-    A UML component diagram can give a clear overview.
-    Boxes and arrows can be used during an early stage of the design.
-    It should be clear where different techniques (programming languages, database systems, data formats, frameworks, ..) are used in the system.
-    Class diagrams and package diagrams for the different components of your system.
-    Subdivide class diagrams into smaller diagrams that focus on a particular aspect.
-    Think about which details can be left out (e.g.\ private attributes and methods).
-    Always make sure diagrams are readable when printed on paper.
-    Only provide a textual description of classes and methods that require additional explanation.
+    WIP
     \begin{itemize}
               \item Sequence diagrams to show interactions between objects, if the interaction is particularly complex or involves many objects.
               \item Deployment diagrams to show the hardware and middleware on which the different software components run.
@@ -67,14 +59,6 @@
     \end{itemize}
 
     \subsection[class_diagram]{Class diagram}
-
-    Database designs, such as ERD diagrams.
-
-    Descriptions of custom protocols, data formats etc.
-
-    Security measures and considerations.
-
-    Algorithm designs.
 
     \subsection{Project Structure}
     LibGDX enforces a certain project structure\cite{libgdxprojstruct}.
@@ -135,18 +119,8 @@
     %------------------------------------------------------------------------------------------------------------------------------------------------------- Design Choices
     \section{Design Choices}
     \label{sec:designchoices}
-    Design decisions: discuss the motivation (arguments/reasons), consequences,
-    and alternatives for the decisions.
-    Onderverdeeld in epics ipv user stories, makkelijker te snappen, overzichtelijker, etc. beschrijven..
-
-    Description of custom protocols, data formats etc.\\
-    Security measures and considerations.\\
-    Coding conventions may be added (as appendix).\\
-    Diagrams need textual explanation of context, interpretation and underlying design decisions and reasoning.\\
-
     It has been decided to resizes texture assets to dimensions in the power of two.
     This is to maintain backwards compatibility for OpenGL ES 1.0, to keep all functionality (some libGDX features are otherwise not supported) and it is a bit more memory efficient.\cite{libgdxpottex}
-
 
     \subsection[Communication MVA-MEA]{Receiving command or information from MVA and MEA}
     \label{subsec:comchoice}
@@ -170,6 +144,7 @@
     To conclude, there is little practical difference in the two options.
     Therefore the most lightweight and generally easier to implement option, threads, will be used for concurrency between the to projects.
 
+    WIP
     \begin{enumerate}
         \item Switch case branching on the different types of messages
         \item Command pattern
@@ -233,7 +208,7 @@
     %------------------------------------------------------------------------------------------------------------------------------------------------------- Build Automation
     \section{Continous Intergration}
     In this section build automation and its constituent components will be discussed.
-    How we applied it, the softwere used and the targets and platforms supported are among a few.
+    How we applied it, the software used and the targets and platforms supported are among a few.
 
     \newpage
     %------------------------------------------------------------------------------------------------------------------------------------------------------- References
