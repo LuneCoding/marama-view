@@ -158,14 +158,17 @@
         \hline
         & Thread object & Process object\\\cline{2-3}\hline
         Android & Y & Y \\
-        Shared Memory & Y & N \\
-        Allocated Time & N & Y \\
-        Communication & with parent process & via pipes and sockets \\
-        Weight & light & heavy \\
-        Coupling & tight & loose \\
+        Shared Memory\cite{vogeljavaconc,noobbookjavaconc} & Y & N \\
+        Allocated Time\cite{vogeljavaconc} & N & Y \\
+        Communication\cite{noobbookjavaconc} & with parent process & via pipes and sockets \\
+        Weight\cite{noobbookjavaconc,stackjavaconc,develjavaconc} & light & heavy \\
+        Coupling\cite{stackjavaconc} & tight & loose \\
         \hline
-    \end{tabular}
-
+    \end{tabular}\\
+    There is little difference in speed\cite{stackjavaconc} between the two approaches.
+    A process is a separate task as far as an OS is concerned, whilst a thread runs on the allocated time of the parent process (the main thread in most cases).\\
+    To conclude, there is little practical difference in the two options.
+    Therefore the most lightweight and generally easier to implement option, threads, will be used for concurrency between the to projects.
 
     \begin{enumerate}
         \item Switch case branching on the different types of messages
