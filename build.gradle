@@ -88,7 +88,7 @@ project(":core") {
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "junit:junit:4.12"
-        compile files("./../libs/MaramaEditor.jar")
+        compile files("./../libs/MaramaEditor-46d03c96ee12fe0f74b8de7e2b27702d44ef2fd5.jar")
     }
 }
 
