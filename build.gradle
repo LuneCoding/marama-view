@@ -77,7 +77,6 @@ project(":ios") {
         compile "com.mobidevelop.robovm:robovm-cocoatouch:$roboVMVersion"
         compile "com.badlogicgames.gdx:gdx-backend-robovm:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-ios"
-
     }
 }
 
@@ -89,6 +88,7 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "junit:junit:4.12"
         compile files("./../libs/MaramaEditor-feaa0eb2c82dbbcc2ceb50a3d1ce40ee25c8584c.jar")
+        compile files("./../libs/commons-exec-1.3.jar")
     }
 }
 
