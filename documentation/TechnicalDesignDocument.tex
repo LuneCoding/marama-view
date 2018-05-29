@@ -205,6 +205,26 @@
     The first BoundingBox that is intersected by the ray will be the selected object.
     Casting the rays from the camera origin and locating the first intersected BoundingBox will prevent that 3D objects in the background will be selected.
 
+    \subsubsection{View and Game Communication}
+    View and editor (game) communication has everything to do with the way the two applications will work together.
+    The view is built in Java using libGDX, a graphics library and the editor is built using Scala.
+    Both the view and the editor are two different applications both with its own goal.
+    The editor contains the Marama logic and the view will visualize this logic.
+    The following user stories will enforce that both these applications will work together:
+    \begin{itemize}
+        \item{\href{\clickup{2v50y}}{\#2v50y} As a MGD or player I want to be able to read and parse answers from the MVA}
+        \item{\href{\clickup{2v4z9}}{\#2v4z9} As a MGD or player I want to be able to send messages to the MEA}
+        \item{\href{\clickup{2v50h}}{\#2v50h} As a MGD or player I want to be able to read and parse answers from the MEA}
+        \item{\href{\clickup{2v516}}{\#2v516} As a MGD or player I want to be able to send messages to the MVA}
+    \end{itemize}
+    The communication is currently done using a .jar file.
+    A .jar file is exported from the editor application and included inside the view application.
+    The .jar file that is exported can be seen as a library and contains al information about the classes that are made within the editor application.
+    The view can address these classes if it is in need of some Marama logic.
+    This could be when a m-block is linked together with another m-block.
+    The editor library (.jar file) needs to validate if both m-blocks can be linked together.
+    This is not a task for the view itself.
+
     \newpage
     %------------------------------------------------------------------------------------------------------------------------------------------------------- Build Automation
     \section{Continous Intergration}
