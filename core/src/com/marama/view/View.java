@@ -14,8 +14,8 @@ public class View extends Game {
     @Override
     public void create () {
         EditorThread editor = new EditorThread();
-        editor.run();
-
+        editor.start();
+        editor.requests().add("Hi Marama!");
         setScreen(new SplashScreen(
             this,
             new ScreenViewport()
