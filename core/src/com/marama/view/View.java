@@ -16,6 +16,7 @@ import java.io.IOException;
 public class View extends Game {
     @Override
     public void create () {
+        // TODO move code to another class or method
         String line = "java -jar ../..//libs/marama-editor.jar test marama";
         CommandLine cmdLine = CommandLine.parse(line);
         DefaultExecutor executor = new DefaultExecutor();
