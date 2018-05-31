@@ -5,7 +5,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.marama.view.screens.SplashScreen;
-import editor.EditorThread;
+import org.apache.commons.exec.CommandLine;
+import org.apache.commons.exec.DefaultExecutor;
+import org.apache.commons.exec.ExecuteException;
+import java.io.IOException;
 
 /**
  * This is the initial {@link Game} class that will be instantiated by libGDX in the different launchers.
@@ -13,9 +16,22 @@ import editor.EditorThread;
 public class View extends Game {
     @Override
     public void create () {
-        EditorThread editor = new EditorThread();
-        editor.start();
-        editor.requests().add("Hi Marama!");
+        String line = "java -jar ../..//libs/marama-editor.jar test marama";
+        CommandLine cmdLine = CommandLine.parse(line);
+        DefaultExecutor executor = new DefaultExecutor();
+        int exitValue = 0;
+        try {
+            exitValue = executor.execute(cmdLine);
+        } catch (ExecuteException ee) {
+            ee.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (exitValue != 0) {
+            System.err.println("Editor: error, returned " + exitValue);
+            // TODO better error logging, static error code to string function from editor
+        }
+
         setScreen(new SplashScreen(
             this,
             new ScreenViewport()

@@ -62,7 +62,6 @@ project(":android") {
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-arm64-v8a"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86_64"
-
     }
 }
 
@@ -87,8 +86,8 @@ project(":core") {
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "junit:junit:4.12"
-        compile files("./../libs/MaramaEditor-feaa0eb2c82dbbcc2ceb50a3d1ce40ee25c8584c.jar")
-        compile files("./../libs/commons-exec-1.3.jar")
+        compile files("./../libs/marama-editor.jar")
+        compile files("./../libs/commons-exec-1.3/commons-exec-1.3.jar")
     }
 }
 
