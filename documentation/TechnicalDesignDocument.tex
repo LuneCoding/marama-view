@@ -1,6 +1,6 @@
 \documentclass[10pt]{extarticle} % article doctype, possible font size range from 8pt to 20pt with not all being avaiable.
 \setcounter{secnumdepth}{4} % Max. section depth, e.g. 3 means 4.1.1 is possible but not 4.1.1.2
-\title{\huge Technical Design Document MaramaUU}
+\title{\huge Technical Design Document MaramaUU View}
 \author{Tim Hintzbergen, Wilbert Schepenaar, <nextname>    \\s1097561, s1094484, <nextcode>
 \\\\ICTGPb
 \\Wilco Moerman}
@@ -140,24 +140,16 @@
         \hline
     \end{tabular}\\
     There is little difference in speed\cite{stackjavaconc} between the two approaches.
-    Another thing to note is that Thread objects work both with Java and Scala.
-    A process is a separate task as far as an OS is concerned, whilst a thread runs on the allocated time of the parent process (the main thread in most cases).\\
+    A process is a separate task as far as the OS is concerned, whilst a thread runs on the allocated time of the parent process (the main thread in most cases).\\
+    One other way to use Processes is by use of Commons Exec\cite{commonsexec} library.
+    This library was made because the default Java implementation is inadequate.
+    The library works almost the same as Java \texttt{ProcessBuilder}.
     To conclude, there is little practical difference in the two options.
     Therefore the most lightweight and generally easier to implement option, threads, will be used for concurrency between the to projects.
 
-    \\\\WIP
-    \begin{enumerate}
-        \item Switch case branching on the different types of messages
-        \item Command pattern
-        \item Chain of responsibility pattern
-        \item Observer pattern
-    \end{enumerate}
-    \begin{tabular}[c]{l | l | l | l |l | l}
-    \{1\} & & \{2\} & & \{3\} & \\ \hline
-        Pro & Con & Pro & Con & Pro & Con \\ \hline
-
-    \end{tabular}
-
+    WIP
+    Apache Commons Exec
+    New workings
 
     \subsection{Epics}
     \label{subsec:epics}
