@@ -5,6 +5,8 @@ android/android.iml___jb_tmp___
 auxil/
 documentation/*.pdf
 documentation/*.synctex.gz
+project/
+**/META-INF/
 
 ## LaTeX + BibTex
 auxil/
