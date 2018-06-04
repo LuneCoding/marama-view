@@ -30,7 +30,6 @@ public class View extends Game {
         }
         if (exitValue != 0) {
             System.err.println("Editor: error, returned " + exitValue);
-            // TODO better error logging, static error code to string function from editor
         }
 
         setScreen(new SplashScreen(
