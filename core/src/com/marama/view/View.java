@@ -16,22 +16,6 @@ import java.io.IOException;
 public class View extends Game {
     @Override
     public void create () {
-        // TODO move code to another class or method
-        String line = "java -jar ../..//libs/marama-editor.jar test marama";
-        CommandLine cmdLine = CommandLine.parse(line);
-        DefaultExecutor executor = new DefaultExecutor();
-        int exitValue = 0;
-        try {
-            exitValue = executor.execute(cmdLine);
-        } catch (ExecuteException ee) {
-            ee.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        if (exitValue != 0) {
-            System.err.println("Editor: error, returned " + exitValue);
-        }
-
         setScreen(new SplashScreen(
             this,
             new ScreenViewport()
