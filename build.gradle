@@ -85,9 +85,9 @@ project(":core") {
 
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+        compile group: "org.apache.commons", name: "commons-exec", version: "1.3"
         compile "junit:junit:4.12"
         compile files("./../libs/marama-editor.jar")
-        compile files("./../libs/commons-exec-1.3/commons-exec-1.3.jar")
     }
 }
 
