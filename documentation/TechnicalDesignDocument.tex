@@ -1,6 +1,6 @@
 \documentclass[10pt]{extarticle} % article doctype, possible font size range from 8pt to 20pt with not all being avaiable.
 \setcounter{secnumdepth}{4} % Max. section depth, e.g. 3 means 4.1.1 is possible but not 4.1.1.2
-\title{\huge Technical Design Document MaramaUU}
+\title{\huge Technical Design Document MaramaUU View}
 \author{Tim Hintzbergen, Wilbert Schepenaar, <nextname>    \\s1097561, s1094484, <nextcode>
 \\\\ICTGPb
 \\Wilco Moerman}
@@ -48,15 +48,7 @@
 
     %------------------------------------------------------------------------------------------------------------------------------------------------------- Architecture
     \section{Architecture}
-    A high-level overview of the architecture of the system.
-    A UML component diagram can give a clear overview.
-    Boxes and arrows can be used during an early stage of the design.
-    It should be clear where different techniques (programming languages, database systems, data formats, frameworks, ..) are used in the system.
-    Class diagrams and package diagrams for the different components of your system.
-    Subdivide class diagrams into smaller diagrams that focus on a particular aspect.
-    Think about which details can be left out (e.g.\ private attributes and methods).
-    Always make sure diagrams are readable when printed on paper.
-    Only provide a textual description of classes and methods that require additional explanation.
+    WIP
     \begin{itemize}
               \item Sequence diagrams to show interactions between objects, if the interaction is particularly complex or involves many objects.
               \item Deployment diagrams to show the hardware and middleware on which the different software components run.
@@ -67,14 +59,6 @@
     \end{itemize}
 
     \subsection[class_diagram]{Class diagram}
-
-    Database designs, such as ERD diagrams.
-
-    Descriptions of custom protocols, data formats etc.
-
-    Security measures and considerations.
-
-    Algorithm designs.
 
     \subsection{Project Structure}
     LibGDX enforces a certain project structure\cite{libgdxprojstruct}.
@@ -134,19 +118,41 @@
 
     %------------------------------------------------------------------------------------------------------------------------------------------------------- Design Choices
     \section{Design Choices}
-    Design decisions: discuss the motivation (arguments/reasons), consequences,
-    and alternatives for the decisions.
-    Onderverdeeld in epics ipv user stories, makkelijker te snappen, overzichtelijker, etc. beschrijven..
-
-    Description of custom protocols, data formats etc.\\
-    Security measures and considerations.\\
-    Coding conventions may be added (as appendix).\\
-    Diagrams need textual explanation of context, interpretation and underlying design decisions and reasoning.\\
-
+    \label{sec:designchoices}
     It has been decided to resizes texture assets to dimensions in the power of two.
     This is to maintain backwards compatibility for OpenGL ES 1.0, to keep all functionality (some libGDX features are otherwise not supported) and it is a bit more memory efficient.\cite{libgdxpottex}
 
+    \subsection[Communication MVA-MEA]{Receiving command or information from MVA and MEA}
+    \label{subsec:comchoice}
+    Concurrency is essential to this task.
+    This way the user interface and the marama logic will be separated and do not delay each other.
+    Since the current set-up uses the editor artifact as a library in the view project the view needs to enable concurrency for the editor.
+    There are different ways to implement concurrency, a couple will be listed and compared.\\
+    \begin{tabular}[c]{| l || c | c | c}
+        \hline
+        & Thread object & Process object\\\cline{2-3}\hline
+        Android & Y & Y \\
+        Shared Memory\cite{vogeljavaconc,noobbookjavaconc} & Y & N \\
+        Allocated Time\cite{vogeljavaconc} & N & Y \\
+        Communication\cite{noobbookjavaconc} & with parent process & via pipes and sockets \\
+        Weight\cite{noobbookjavaconc,stackjavaconc,develjavaconc} & light & heavy \\
+        Coupling\cite{stackjavaconc} & tight & loose \\
+        \hline
+    \end{tabular}\\
+    There is little difference in speed\cite{stackjavaconc} between the two approaches.
+    A process is a separate task as far as the OS is concerned, whilst a thread runs on the allocated time of the parent process (the main thread in most cases).\\
+    One other way to use Processes is by use of Commons Exec\cite{commonsexec} library.
+    This library was made because the default Java implementation is inadequate.
+    The library works almost the same as Java \texttt{ProcessBuilder}.
+    To conclude, there is little practical difference in the two options.
+    Therefore the most lightweight and generally easier to implement option, threads, will be used for concurrency between the two projects.
+
+    WIP
+    Apache Commons Exec
+    New workings
+
     \subsection{Epics}
+    \label{subsec:epics}
     The view is made up of different epics.
     Epics are a collection of user stories that share a goal or functionality.
 
@@ -191,14 +197,38 @@
     The first BoundingBox that is intersected by the ray will be the selected object.
     Casting the rays from the camera origin and locating the first intersected BoundingBox will prevent that 3D objects in the background will be selected.
 
+    \subsubsection{View and Game Communication}
+    View and editor (game) communication has everything to do with the way the two applications will work together.
+    The view is built in Java using libGDX, a graphics library, and the editor is built using Scala.
+    Both the view and the editor are two different applications both with its own goal.
+    The editor contains the Marama logic and the view will visualize this logic.
+    The following user stories will enforce that both these applications will work together:
+    \begin{itemize}
+        \item{\href{\clickup{2v50y}}{\#2v50y} As a MGD or player I want to be able to read and parse answers from the MVA}
+        \item{\href{\clickup{2v4z9}}{\#2v4z9} As a MGD or player I want to be able to send messages to the MEA}
+        \item{\href{\clickup{2v50h}}{\#2v50h} As a MGD or player I want to be able to read and parse answers from the MEA}
+        \item{\href{\clickup{2v516}}{\#2v516} As a MGD or player I want to be able to send messages to the MVA}
+    \end{itemize}
+    The communication is currently done using a .jar file.
+    A .jar file is exported from the editor application and imported inside the view application.
+    This is currently done using {\href{https://github.com/sbt/sbt-assembly}{sbt-assembly}}.
+    sbt-assembly is a plugin for sbt projects that exports a .jar file with al its dependencies.
+    The .jar file that is exported can be seen as a library and contains al information about the classes that are made within the editor application.
+    The view can address these classes if it is in need of some Marama logic.
+    This could be when a M-block is linked together with another M-block.
+    The editor library (inside the .jar file) needs to validate if both m-blocks can be linked together.
+    This is not a task for the view itself.
+
     \newpage
     %------------------------------------------------------------------------------------------------------------------------------------------------------- Build Automation
     \section{Continous Intergration}
     In this section build automation and its constituent components will be discussed.
-    How we applied it, the softwere used and the targets and platforms supported are among a few.
+    How we applied it, the software used and the targets and platforms supported are among a few.
 
     \newpage
     %------------------------------------------------------------------------------------------------------------------------------------------------------- References
+    \input{glossary}
+
     \bibliography{references}
     \bibliographystyle{ieeetr} % options: apalike for apa, ieeetr for ieee
 \end{document}
