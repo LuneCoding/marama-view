@@ -5,10 +5,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.marama.view.screens.SplashScreen;
-import org.apache.commons.exec.CommandLine;
-import org.apache.commons.exec.DefaultExecutor;
-import org.apache.commons.exec.ExecuteException;
-import java.io.IOException;
 
 /**
  * This is the initial {@link Game} class that will be instantiated by libGDX in the different launchers.
