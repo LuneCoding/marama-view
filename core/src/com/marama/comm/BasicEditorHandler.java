@@ -59,8 +59,6 @@ public class BasicEditorHandler implements Runnable {
      */
     @Override
     public void run() {
-        boolean exit = false;
-
         BufferedReader reader = new BufferedReader(new InputStreamReader(instance.editor.getInputStream()));
 
         String line = "";

@@ -4,8 +4,6 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.marama.comm.BasicEditorHandler;
-import com.marama.comm.RequestType;
 import com.marama.view.screens.SplashScreen;
 
 /**
@@ -14,9 +12,6 @@ import com.marama.view.screens.SplashScreen;
 public class View extends Game {
     @Override
     public void create () {
-        BasicEditorHandler editor = BasicEditorHandler.getInstance(); // TODO remove
-        editor.requestOperation(RequestType.VERSION, new String[]{});
-
         setScreen(new SplashScreen(
             this,
             new ScreenViewport()
