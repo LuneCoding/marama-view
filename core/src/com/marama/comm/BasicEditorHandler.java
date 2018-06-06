@@ -64,13 +64,15 @@ public class BasicEditorHandler implements Runnable {
         BufferedReader reader = new BufferedReader(new InputStreamReader(instance.editor.getInputStream()));
 
         String line = "";
-        while(!line.equals("exit") && !line.equals("quit") ) {
+        while(line != null && !line.equals("exit") && !line.equals("quit") ) {
             try {
                 line = reader.readLine();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            System.out.println(line);
+            if (line != null && !line.equals("")) {
+                System.out.println(line);
+            }
         }
         // TODO shutdown code
     }
