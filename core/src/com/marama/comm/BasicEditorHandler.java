@@ -30,9 +30,9 @@ public class BasicEditorHandler implements Runnable {
     }
 
     /**
-     *
-     * @param type
-     * @param args
+     * Queries the Editor for the specified request, using passed arguments if necessary.
+     * @param type The type of the request.
+     * @param args The arguments passed along certain requests. Not all requests take arguments, they will be ignored.
      */
     public void requestOperation(RequestType type, String[] args) {
         // Incrementally build the operation string.
@@ -61,6 +61,8 @@ public class BasicEditorHandler implements Runnable {
     public void run() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(instance.editor.getInputStream()));
 
+        // Continuously check output of the Editor and respond accordingly.
+        // For now just echo responses to the StdIn.
         String line = "";
         while(line != null && !line.equals("exit") && !line.equals("quit") ) {
             try {
